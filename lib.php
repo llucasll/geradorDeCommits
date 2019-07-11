@@ -13,17 +13,13 @@
 	function executar($x, $i, $j){
 		global $raiz;
 		
-		if(empty($x)){
-			$file = "base.php";
-			$path = $raiz . "/" . $file;
-		}
-		else{
+		if(!empty($x)){
 			$file = "gerado.$x.php";
-			$path = $raiz . "/gerado/" . $file;
-		}
 		
-		echo "Executar $file:\t";
-		require "$path";
+			echo "Executar $file:\t";
+			return require $raiz . "/gerado/" . $file;
+		}
+		return array("i"=>0, "j"=>0);
 	}
 	
 ?>

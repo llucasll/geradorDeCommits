@@ -1,17 +1,19 @@
 #!/usr/bin/php
 <?php
+	
 	require "lib.php";
+	$x = getIndice();
 	
 	echo "<?php";
-	
-	$x = getIndice();
 ?>
 
 	echo "Executando <?=$x?>...\n";
 	
+	$x--;
+	extract( executar($x, $i, $j) );
+	
 	$i++;
 	$j++;
 	
-	$x--;
-	executar($x, $i, $j);
+	return array("i"=>$i, "j"=>$j);
 ?>
