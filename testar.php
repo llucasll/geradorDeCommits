@@ -7,8 +7,8 @@
 	extract( executar(getIndice(), 0, 0) );
 	
 	if($i === $j)
-		echo "Sucesso:\t\t".'$i = ' . $i . ";\n\t\t\t".'$j = ' . $j . ".\n";
+		echo "\e[1m\e[32mSucesso:\t\t".'$i = ' . $i . ";\n\t\t\t".'$j = ' . $j . ".\n\n\e[0m";
 	else
-		echo 'Temos um erro: $i = ' . $i . '; e $j = ' . $j . ".\n";
+		echo "\e[1m\e[91mTemos um erro:\t\t".'$i = ' . $i . ";\n\t\t\t".'$j = ' . $j . ".\n\n\e[0m";
 	
 ?>
