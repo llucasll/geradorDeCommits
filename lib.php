@@ -17,7 +17,8 @@
 			$file = "gerado.$x.php";
 		
 			echo "Executar $file:\t";
-			return require $raiz . "/gerado/" . $file;
+			require $raiz . "/gerado/" . $file;
+			return array("i"=>$i, "j"=>$j);
 		}
 		return array("i"=>0, "j"=>0);
 	}

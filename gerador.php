@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 	
 	require "lib.php";
@@ -14,6 +13,4 @@
 	
 	$i++;
 	$j++;
-	
-	return array("i"=>$i, "j"=>$j);
 ?>

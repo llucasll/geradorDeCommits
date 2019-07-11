@@ -25,7 +25,7 @@ for counter in $(seq 1 $1); do
 	echo $x > gerado/indice.txt;
 	
 	# Gerar um arquivo de código-fonte
-	./gerador.php > gerado/gerado.$x.php;
+	php gerador.php > gerado/gerado.$x.php;
 	
 	# Commitar
 	cd gerado
