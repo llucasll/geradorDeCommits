@@ -1,16 +1,27 @@
 <?php
 	
-	require "lib.php";
+	function getIndice(){
+		$lido = @file("gerado/indice.txt");
+		
+		$val = 0;
+		if(!empty($lido))
+			$val = (int) $lido[0];
+		
+		return $val;
+	}
+	
 	$x = getIndice();
 	
-	echo "<?php";
 ?>
 
-	echo "Executando <?=$x?>...\n";
+Executando fragmento <?=$x?>...
+<?= "<?php" ?>
 	
-	$x--;
-	extract( executar($x, $i, $j) );
+	//Fragmento <?=$x?>
 	
 	$i++;
 	$j++;
+		
+	testar($i, $j);
+	
 ?>
