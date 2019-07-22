@@ -1,27 +1,11 @@
 <?php
+	$x = (int) file_get_contents("gerado/indice.txt"); //file_put_contents($file, $x);
 	
-	function getIndice(){
-		$lido = @file("gerado/indice.txt");
-		
-		$val = 0;
-		if(!empty($lido))
-			$val = (int) $lido[0];
-		
-		return $val;
-	}
+	if ($x < 2)
+		include "trechos/fragmento-0.php";
 	
-	$x = getIndice();
-	
+	echo "<?php\n";
+	include "trechos/fragmento.php";
+	echo "?>\n\n";
 ?>
 
-Executando fragmento <?=$x?>...
-<?= "<?php" ?>
-	
-	//Fragmento <?=$x?>
-	
-	$i++;
-	$j++;
-		
-	testar($i, $j);
-	
-?>
