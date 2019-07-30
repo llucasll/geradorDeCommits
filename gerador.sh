@@ -1,35 +1,30 @@
 #!/bin/bash
 
-cd gerado/
+# Definir arg1 (operador ternário)
+[ -z "$1" ] && arg1=0 || arg1=$1
 
 # Opção para limpar o diretório "gerado/"
-if [ "$1" == "-1" ]; then
+if [ "$arg1" == "0" ]; then
 	
 	printf "Limpando \'gerado/\'...\t"
-	
-	if [ ! -z "`ls`" ]; then
-		rm ./*
-	fi
-	if [ -d ".git" ]; then
-		rm -rf .git
-	fi
-	
+	[[ ! -z "`ls gerado/`" ]] && rm -rf gerado/
 	echo Limpo!
 	
 	exit;
+	
 fi
 
 # Preparativos
-	echo
+	[ -d "gerado/" ]\
+		|| mkdir gerado
 
-	# Inicializar repo
-	[[ ! -d ".git" ]] && git init
+	cd gerado/
 
-	# Definir arg1 (operador ternário)
-	[[ -z "$1" ]] && arg1=0 || arg1=$1
+	[ -d ".git" ]\
+		|| git init # Inicializar repo
+	[ -f "indice.txt" ]\
+		|| echo 1 > indice.txt # Assegurar que o índice existe
 
-	# Assegurar que o índice existe
-	[[ ! -f "indice.txt" ]] && echo 1 > indice.txt
 	indice=`cat indice.txt`;
 
 # Tantas vezes quanto passado por linha de comando
@@ -45,12 +40,12 @@ for counter in $(seq 1 $arg1); do
 	cd gerado/
 
 	# Atualizar o índice
-	echo $(($indice + $counter)) > indice.txt;
+	x=$(($indice + $counter -1))
+	echo $(($x+1)) > indice.txt;
 	
 	# Commitar
 	git add gerado.php indice.txt
 	git commit -m "Gerada $xª versão"
-	
 done
 
 echo

@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-
+	
 	// ANSI codes
 	define('estilos', [
 		"verde" => "\e[32m",
@@ -8,29 +8,34 @@
 		"fim" => "\e[0m",
 	]);
 	
-	function result($cor, $msg, $i, $j){
+	function resultado($cor, $msg, $i, $j){
 		echo
 			estilos[$cor].
 			"$msg:		i = $i;".PHP_EOL.
 			"			j = $j.".
-			estilos["fim"]
+			estilos["fim"].
+			PHP_EOL . PHP_EOL
 		;
 	}
-
-	function testar($i, $j){
-		if($i === $j)
-			result("verde", "Sucesso", $i, $j);
-		else
-			result("vermelho", "Temos um erro", $i, $j);
+	
+	function validar($i, $j){
+		$i === $j?
+			resultado("verde", "Sucesso", $i, $j)
+		:
+			resultado("vermelho", "Temos um erro", $i, $j);
 	}
 	
-	if(!file_exists("gerado/gerado.php")){
-		echo "Nenhum código foi gerado até o momento.\n";
-		die();
+	function iniciar(){
+		if(!file_exists("gerado/gerado.php")){
+			echo "Nenhum código foi gerado até o momento." . PHP_EOL;
+			die();
+		}
+		
+		$i = 0;
+		$j = 0;
+		require "gerado/gerado.php";
 	}
 	
-	$i = 0;
-	$j = 0;
-	require "gerado/gerado.php";
+	iniciar();
 	
 ?>
