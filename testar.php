@@ -1,27 +1,36 @@
 #!/usr/bin/php
 <?php
-	function render($cor, $msg, $i, $j){
+
+	// ANSI codes
+	define('estilos', [
+		"verde" => "\e[32m",
+		"vermelho" => "\e[91m",
+		"fim" => "\e[0m",
+	]);
 	
-		$estilos = [// ANSI codes
-			"verde" => "\e[32m",
-			"vermelho" => "\e[91m",
-			"fim" => "\e[0m",
-		];
-		
-		echo $estilos[$cor];
-		
-		include "trechos/renderResult.php";
-		
-		echo $estilos["fim"];
+	function result($cor, $msg, $i, $j){
+		echo
+			estilos[$cor].
+			"$msg:		i = $i;".PHP_EOL.
+			"			j = $j.".
+			estilos["fim"]
+		;
 	}
 
 	function testar($i, $j){
 		if($i === $j)
-			render("verde", "Sucesso", $i, $j);
+			result("verde", "Sucesso", $i, $j);
 		else
-			render("vermelho", "Temos um erro", $i, $j);
+			result("vermelho", "Temos um erro", $i, $j);
 	}
 	
+	if(!file_exists("gerado/gerado.php")){
+		echo "Nenhum código foi gerado até o momento.\n";
+		die();
+	}
+	
+	$i = 0;
+	$j = 0;
 	require "gerado/gerado.php";
+	
 ?>
-
