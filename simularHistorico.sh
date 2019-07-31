@@ -3,22 +3,24 @@
 # Definir arg1 (operador ternário)
 [ -z "$1" ] && arg1=0 || arg1=$1
 
-# Opção para limpar o diretório "gerado/"
+# Opção para limpar o diretório "repoTeste/"
 if [ "$arg1" == "0" ]; then
 	
-	printf "Limpando \'gerado/\'...\t"
-	[[ ! -z "`ls gerado/`" ]] && rm -rf gerado/
-	echo Limpo!
+	if [ -d "repoTeste/" ]; then
+		printf "Limpando \'repoTeste/\'...\t"
+		rm -rf repoTeste/
+		echo Limpo!
+	fi
 	
 	exit;
 	
 fi
 
 # Preparativos
-	[ -d "gerado/" ]\
-		|| mkdir gerado
+	[ -d "repoTeste/" ]\
+		|| mkdir repoTeste
 
-	cd gerado/
+	cd repoTeste/
 
 	[ -d ".git" ]\
 		|| git init # Inicializar repo
@@ -36,15 +38,15 @@ for counter in $(seq 1 $arg1); do
 	
 	# Append no código-fonte
 	cd ..
-	php gerador.php >> gerado/gerado.php;
-	cd gerado/
+	php gerarFragmento.php >> repoTeste/programaQualquer.php;
+	cd repoTeste/
 
 	# Atualizar o índice
 	x=$(($indice + $counter -1))
 	echo $(($x+1)) > indice.txt;
 	
 	# Commitar
-	git add gerado.php indice.txt
+	git add programaQualquer.php indice.txt
 	git commit -m "Gerada $xª versão"
 done
 

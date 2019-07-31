@@ -25,17 +25,17 @@
 			resultado("vermelho", "Temos um erro", $i, $j);
 	}
 	
-	function iniciar(){
-		if(!file_exists("gerado/gerado.php")){
+	function iniciarTeste(){
+		if(!file_exists("repoTeste/programaQualquer.php")){
 			echo "Nenhum código foi gerado até o momento." . PHP_EOL;
 			die();
 		}
 		
 		$i = 0;
 		$j = 0;
-		require "gerado/gerado.php";
+		require "repoTeste/programaQualquer.php";
 	}
 	
-	iniciar();
+	iniciarTeste();
 	
 ?>
