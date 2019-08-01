@@ -1,9 +1,12 @@
+#!/usr/bin/php
 <?php
 	
 	if (!file_exists("repoTeste/programaQualquer.php") || filesize("repoTeste/programaQualquer.php")==0)
 		echo PHP_EOL . "<?php" . PHP_EOL;
-		
-	$x = (int) file_get_contents("repoTeste/indice.txt");
+	
+	$x = file_exists("repoTeste/indice.txt")?
+		(int) file_get_contents("repoTeste/indice.txt")
+		: 1;
 	
 	if ($x > 0)
 	
